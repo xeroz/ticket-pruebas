@@ -4,9 +4,19 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+use App\Concert;
+use Carbon\Carbon;
+
 class ViewConcertListingTest extends TestCase
 {
-    function user_can_view_a_concert_listing()
+
+    use DatabaseMigrations;
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testExample()
     {
         //Create a concert
         $concert = Concert::create([
@@ -25,13 +35,20 @@ class ViewConcertListingTest extends TestCase
         $this->visit('/concerts/'.$concert->id);
 
         $this->see('the red chord');
-        $this->see('with animosity and lethargy');
-        $this->see('December 13, 2016 8:00pm');
+        $this->see('with Animosity and Lethardgy');
+        $this->see('December 13, 2016');
         $this->see('8:00pm');
         $this->see('32.50');
         $this->see('the mosh pit');
         $this->see('123 Example Lane');
         $this->see('Laraville ON 17916');
         $this->see('For tickets, call (555) 555-5555');
+
+        $this->assertTrue(true);
+    }
+
+    function user_can_view_a_concert_listing()
+    {
+        
     }
 }
